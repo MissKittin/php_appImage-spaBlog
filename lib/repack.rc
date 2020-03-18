@@ -1,0 +1,32 @@
+unpack()
+{
+	if [ "$1" = '' ]; then
+		echo 'no version given'
+		return 1
+	fi
+	if [ ! -e "${1}.tar.bz2" ]; then
+		echo 'not exists'
+		return 1
+	fi
+	mkdir $1
+	cd $1
+	tar xvf ../${1}.tar.bz2 > /dev/null 2>&1 && echo 'OK' || return 1
+	cd ..
+	rm ${1}.tar.bz2
+}
+pack()
+{
+	if [ "$1" = '' ]; then
+		echo 'no version given'
+		return 1
+	fi
+	if [ ! -e "$1" ]; then
+		echo 'not exists'
+		return 1
+	fi
+	cd $1
+	tar cvf ../${1}.tar * > /dev/null 2>&1 && echo 'OK' || return 1
+	cd ..
+	rm -r -f $1
+	bzip2 -9 ${1}.tar > /dev/null 2>&1 && echo 'OK' || return 1
+}
