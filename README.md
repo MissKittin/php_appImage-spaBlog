@@ -5,5 +5,5 @@
 3. type `pack 1`
 4. `cd ..`
 5. read `README.TXT` file
-6. remove `README.MD`
+6. remove `README.MD` and `LICENSE`
 7. `. ./lib/server.rc`
